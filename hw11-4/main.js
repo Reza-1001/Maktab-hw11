@@ -17,50 +17,63 @@ const fs = require("fs");
 // console.log(names);
 // console.log(numbers);
 // }
-
-function FileRead(path, key1, key2) {
-  let data = fs.readFileSync(path).toString().split(/\r\n/);
-  let data2 = [];
-  let a;
-  let b = {};
-  for (let i of data) {
-    a = i.split("-");
-
-    data2.push({ [key1]: a[0].trim(), [key2]: a[1].trim() });
-  }
-  return data2;
-}
-let names = FileRead("hw11-4/files/names.txt", "id", "name");
-let numbers = FileRead("hw11-4/files/numbers.txt", "id", "phoneNumber");
-let found=false;
-let merged=[];
+let names = fs.readFileSync("hw11-4/files/names.txt","utf8").split(/\r\n/);
+let numbers = fs.readFileSync("hw11-4/files/numbers.txt","utf8").split(/\r\n/);
 for (let i in names){
-    for (let j in numbers){
-        if (names[i].id==numbers[j].id){
-             obj={
-                id:names[i].id,
-                name:names[i].name,
-                phoneNumber:function(){
-                    return this.push(numbers[j].phoneNumber)
-                },
-            }
-            merged.push(obj);
-        }
-    }
+    names[i]=names[i].split("-")
 }
-console.log(merged);
+for (let i in numbers){
+   numbers[i]=numbers[i].split("-")
+    
+}
+console.log(names);
+console.log(numbers);
 
-function Merge(a, b,index){
-    let obj={};
-for (let i in a){
-    for (let j in b){
-        obj["id"]=a[i];
-        obj["name"]=a;
-        names[index][j]=b[j];
-    }
-}
-return
-}
+
+
+
+// function FileRead(path, key1, key2) {
+//   let data = 
+//   let data2 = [];
+//   let a;
+//   let b = {};
+//   for (let i of data) {
+//     a = i.split("-");
+
+//     data2.push({ [key1]: a[0].trim(), [key2]: a[1].trim() });
+//   }
+//   return data2;
+// }
+
+
+// let merged=[];
+// for (let i in names){
+//     for (let j in numbers){
+//         if (names[i].id==numbers[j].id){
+//              obj={
+//                 id:names[i].id,
+//                 name:names[i].name,
+//                 phoneNumber:function(){
+//                     return this.push(numbers[j].phoneNumber)
+//                 },
+//             }
+//             merged.push(obj);
+//         }
+//     }
+// }
+// console.log(merged);
+
+// function Merge(a, b,index){
+//     let obj={};
+// for (let i in a){
+//     for (let j in b){
+//         obj["id"]=a[i];
+//         obj["name"]=a;
+//         names[index][j]=b[j];
+//     }
+// }
+// return
+// }
 
 
 
